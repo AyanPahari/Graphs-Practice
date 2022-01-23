@@ -16,13 +16,14 @@ class Solution {
     int dy[4]={0,1,0,-1};
     
     bool isValid(int x,int y,vector<vector<int>>&A){
+        //here if i don't pass A by ref then it will give TLE
         if(x<0 || y<0 || x>=row || y>=col) return false;
         if(vis[x][y]==1 || A[x][y]==0) return false;
         return true;
     }
     
     void bfs(int x,int y,vector<vector<int>>&A,int X,int Y){
-        
+        //here if i don't pass A by ref then it will give TLE
         queue<pair<int,int>>q;
         q.push({x,y});
         vis[x][y]=1;
