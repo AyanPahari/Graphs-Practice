@@ -26,7 +26,9 @@ class Solution
         vis[x][y]=1;
         if(x==dstX && y==dstY) return true;
         for(int i=0;i<4;i++){
-            if(isValid(x+dx[i],y+dy[i],grid)&& dfs(x+dx[i],y+dy[i],dstX,dstY,grid)) return true; 
+            if(isValid(x+dx[i],y+dy[i],grid)){
+                if(dfs(x+dx[i],y+dy[i],dstX,dstY,grid)) return true;
+            } 
         }
         return false;
     }
