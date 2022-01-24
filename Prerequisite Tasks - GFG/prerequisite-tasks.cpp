@@ -27,7 +27,7 @@ public:
     
 	bool isPossible(int N, vector<pair<int, int> >& prerequisites) {
 	    vector<vector<int>>adj(N);
-	    vector<int>in(N,0),vis(N,0);
+	    vector<int>in(N,0);
 	    
 	    for(int i=0;i<prerequisites.size();i++){
 	        adj[prerequisites[i].second].push_back(prerequisites[i].first);
