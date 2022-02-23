@@ -15,7 +15,7 @@ public:
             graph[edges[i][1]].push_back({edges[i][0],succProb[i]});
         }
         
-        priority_queue<pair<double,int>,vector<pair<double,int>>, comp> pq;
+        priority_queue<pair<double,int>,vector<pair<double,int>>, comp> pq; //for some reason greater<pair<double,int>> was giving TLE but custom comparator function worked
         vector<double> prob(n,DBL_MIN);
         pq.push({1,start});
         prob[start] = 1;
