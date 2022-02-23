@@ -1,9 +1,10 @@
 class Solution {
 public:
-    struct cmp{
-      bool operator()(pair<int,double> &p1, pair<int,double>& p2){
-          return p1.second < p2.second;
-      }  
+
+    struct comp{
+        bool operator()(pair<double,int>& a, pair<double,int>& b){
+            return a.first < b.first;
+        }    
     };
     
     double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start, int end) {
@@ -14,20 +15,20 @@ public:
             graph[edges[i][1]].push_back({edges[i][0],succProb[i]});
         }
         
-        priority_queue<pair<int,double>,vector<pair<int,double>>, cmp> pq;
+        priority_queue<pair<double,int>,vector<pair<double,int>>, comp> pq;
         vector<double> prob(n,DBL_MIN);
-        pq.push({start,1});
+        pq.push({1,start});
         prob[start] = 1;
         
         while(!pq.empty()){
-            int cur = pq.top().first;
-            double val = pq.top().second;
+            int cur = pq.top().second;
+            double val = pq.top().first;
             pq.pop();
             
             for(auto &child : graph[cur]){
                 if(val*child.second > prob[child.first]){
                     prob[child.first] = val*child.second;
-                    pq.push({child.first,prob[child.first]});
+                    pq.push({prob[child.first],child.first});
                 }
             }
         }
